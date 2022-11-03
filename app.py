@@ -45,7 +45,7 @@ def createImage(pathArray,fileName):
     rgb_im.save("./img/{}.png".format(fileName))
 
 def getName(url):
-    s = str(url).split('\\')
+    s = str(url).split(os.sep)
     s =  s[-1].split('#')
     return s[0]
 

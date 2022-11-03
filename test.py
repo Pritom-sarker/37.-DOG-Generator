@@ -43,7 +43,7 @@ def createImage(pathArray,fileName):
     rgb_im.save("./img/{}.png".format(fileName))
 
 def getName(url):
-    s = str(url).split('\\')
+    s = str(url).split(os.sep)
     s =  s[-1].split('#')
     return s[0]
 
@@ -139,6 +139,7 @@ if __name__ == '__main__':
             data.append('{}.png'.format(img))
             all_data.append(data)
             all_metadata[img]=(metaData)
+            print(metaData)
             createImage(imgPathArray, img)
             img+=1
             break

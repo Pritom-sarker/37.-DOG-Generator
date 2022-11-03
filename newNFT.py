@@ -64,38 +64,25 @@ def getOtherAttr(name):
 
     return data
 
-# strength varies from breed to breed but is not calculated from other stats
-# Health is hard value - 100
-# weight varies - per breed but is not calculated from any other stat
-# agility varies from breed to breed but is not calculated from other stats
-# Stamina is hard value for all - 100
-# endurance - is calculated: (agility+power)*2
-# power - is calculated: (agility+strenght) /2
-# Luck is hard value 
-
-# plus 
-# Toughness - strength + health + stamina + power
-# Swiftness - agility+stamina+power+endurance
-
-
 
 def generate_stats(dog_breed):
     global contractStat,values
     
     stats = {}
-    
+    print((int((str(values[dog_breed][2]).split('-')[0]))))
+    print(int(str(values[dog_breed][0]).split('-')[1]))
     stats[contractStat[0]]=100
-    stats[contractStat[1]] = random.randint(str(values[dog_breed][0]).split('-')[0],str(values[dog_breed][0]).split('-')[1])
-    stats[contractStat[2]] = random.randint(str(values[dog_breed][1]).split('-')[0],str(values[dog_breed][1]).split('-')[1])
-    stats[contractStat[3]] = random.randint(str(values[dog_breed][2]).split('-')[0],str(values[dog_breed][2]).split('-')[1])
+    stats[contractStat[1]] = random.randint(int(str(values[dog_breed][0]).split('-')[0]),int(str(values[dog_breed][0]).split('-')[1]))
+    stats[contractStat[2]] = random.randint(int(str(values[dog_breed][1]).split('-')[0]),int(str(values[dog_breed][1]).split('-')[1]))
+    stats[contractStat[3]] = random.randint(int(str(values[dog_breed][2]).split('-')[0]),int(str(values[dog_breed][2]).split('-')[1]))
     stats[contractStat[4]] = 100
     stats[contractStat[5]] = (stats[contractStat[1]] + stats[contractStat[2]])/2
     stats[contractStat[6]] = (stats[contractStat[1]] + stats[contractStat[5]])*2
-    stats[contractStat[7]] = random.randint(str(values[dog_breed][3]).split('-')[0],str(values[dog_breed][3]).split('-')[1])
-    stats[contractStat[8]] = stats[contractStat[2]] + stats[contractStat[0]] + stats[contractStat[4]] + stats[contractStat[5]] 
+    stats[contractStat[7]] = random.randint(int(str(values[dog_breed][3]).split('-')[0]),int(str(values[dog_breed][3]).split('-')[1]))
+    stats[contractStat[8]] = stats[contractStat[2]] + stats[contractStat[5]] + stats[contractStat[3]] + stats[contractStat[0]] 
     stats[contractStat[9]] = stats[contractStat[1]] + stats[contractStat[4]] + stats[contractStat[5]] + stats[contractStat[6]]
-    
-    
+
+    print(stats)
     
 
 if __name__ == '__main__':
@@ -126,9 +113,7 @@ if __name__ == '__main__':
         os.mkdir('metadata')
     except:
         pass
-
-
-
+    
 
     layers_data = createLayerConfig('First-Draft','Male','Belphegor')
 

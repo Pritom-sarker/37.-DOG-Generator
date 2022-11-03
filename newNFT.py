@@ -64,16 +64,52 @@ def getOtherAttr(name):
 
     return data
 
+# strength varies from breed to breed but is not calculated from other stats
+# Health is hard value - 100
+# weight varies - per breed but is not calculated from any other stat
+# agility varies from breed to breed but is not calculated from other stats
+# Stamina is hard value for all - 100
+# endurance - is calculated: (agility+power)*2
+# power - is calculated: (agility+strenght) /2
+# Luck is hard value 
+
+# plus 
+# Toughness - strength + health + stamina + power
+# Swiftness - agility+stamina+power+endurance
 
 
+
+def generate_stats(dog_breed):
+    global contractStat,values
+    
+    stats = {}
+    
+    stats[contractStat[0]]=100
+    stats[contractStat[1]] = random.randint(str(values[dog_breed][0]).split('-')[0],str(values[dog_breed][0]).split('-')[1])
+    stats[contractStat[2]] = random.randint(str(values[dog_breed][1]).split('-')[0],str(values[dog_breed][1]).split('-')[1])
+    stats[contractStat[3]] = random.randint(str(values[dog_breed][2]).split('-')[0],str(values[dog_breed][2]).split('-')[1])
+    stats[contractStat[4]] = 100
+    stats[contractStat[5]] = (stats[contractStat[1]] + stats[contractStat[2]])/2
+    stats[contractStat[6]] = (stats[contractStat[1]] + stats[contractStat[5]])*2
+    stats[contractStat[7]] = random.randint(str(values[dog_breed][3]).split('-')[0],str(values[dog_breed][3]).split('-')[1])
+    stats[contractStat[8]] = stats[contractStat[2]] + stats[contractStat[0]] + stats[contractStat[4]] + stats[contractStat[5]] 
+    stats[contractStat[9]] = stats[contractStat[1]] + stats[contractStat[4]] + stats[contractStat[5]] + stats[contractStat[6]]
+    
+    
+    
 
 if __name__ == '__main__':
 
     # Put Layer names in sequence
     all_data = []
     layers= ['Background','Soul Ring','Color','Belly','Pattern','Eyes','Soul Particle','Soul Beam']
-    values =[['Falon','6-22','22-26','14-18','12-14','8-10','61-72','143-152','217-238'],['Belphegor','7-22','21-25','13-17','11-13','8-9','58-69','140-149','211-232'],['Cinder','8-21','19-23','12-16','10-12','7.25-8.75','52.5-63.5','138-147','202-223'],['Bess','9-21','18-22','11-15','9-11','6.75-8.25','49.5-60.5','133.50-142.50','194.50-215.50']
-        ,['Barto','10-20','16-20','10-14','8-10','6-7.5','44-55','130-139','184-205'],['Scruffy','11-20','15-19','9-13','7-9','5.5-7','41-52','127-136','178-199']]
+    contractStat = ['Health','Agility','strength','weight','Stamina','Power','Endurance','Luck','Toughness','Swiftness']
+    values ={'Falon':['22-26','12-14','14-18','6-22'],
+             'Belphegor':['21-25','11-13','13-17','7-22'],
+             'Cinder': ['19-23','11-13','12-16','10-12','8-21'],
+             'Bess':['18-22','9-11','11-15','9-21']
+            ,'Barto':['16-20','8-10','10-14','10-20'],
+            'Scruffy':['15-19','7-9','9-13','11-20']}
     try:
         shutil.rmtree('img')
     except:
@@ -97,7 +133,6 @@ if __name__ == '__main__':
     layers_data = createLayerConfig('First-Draft','Male','Belphegor')
 
     allUniqueHash = []
-    numOfImage = 500
     img = 0
     layers =  ['Background','Soul Ring','Color','Belly','Pattern','Soul Particle','Soul Beam']
     while True:
@@ -123,6 +158,7 @@ if __name__ == '__main__':
                 continue
             else:
                 allUniqueHash.append(hash(stringOfImgPath))
+            
             img+=1
             metaData = {}
             metaData["Name"] = "Dog #{}".format(img)
@@ -135,12 +171,7 @@ if __name__ == '__main__':
             writeMetaData(metaData,img)
             createImage(imgPathArray, img)
 
-            if img == numOfImage:
-                break
-        # except:
-        #     print("error!!")
-
-    df = pd.DataFrame(all_data,columns=['Luck','Agility','Weight','Strenght','Power','Endurance','Toughness','Swiftness','File','img'])
-    df.to_csv('mintingData.csv')
+            
+            break
 
 

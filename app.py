@@ -188,4 +188,4 @@ if __name__ == '__main__':
       pass
    
 
-   app.run(host='192.248.172.104', port=5000)
+   app.run(host='192.248.172.104', port=80)

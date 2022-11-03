@@ -82,7 +82,11 @@ def generate_stats(dog_breed):
     stats[contractStat[9]] = stats[contractStat[1]] + stats[contractStat[4]] + stats[contractStat[5]] + stats[contractStat[6]]
 
     return stats
-    
+   
+@app.route('/', methods=['GET'])
+def index():
+   return "Server Is working!!"
+
 @app.route('/get_image', methods=['GET'])
 def get_image():
    id_ = request.args.get("id")

@@ -108,6 +108,7 @@ def mint():
    global img,allUniqueHash,all_metadata
    Breed = request.args.get("breed")
    Gender = request.args.get("gender")
+   print(Breed,Gender)
    layers_data = createLayerConfig('{}_{}'.format(Breed,Gender))
    # print( layers_data)
    layers =  ['Background','Soul Ring','Color','Belly','Pattern','Soul Particle','Soul Beam']

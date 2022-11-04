@@ -8,7 +8,10 @@ from PIL import Image
 import json
 import pandas as pd
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
+CORS(app, support_credentials=True)
+
 
 def createLayerConfig(folder_name ):
    files = glob.glob('./{}/*/*.png'.format(folder_name ))
@@ -88,6 +91,7 @@ def index():
    return "Server Is working!!"
 
 @app.route('/get_image', methods=['GET'])
+@cross_origin(supports_credentials=True)
 def get_image():
    id_ = request.args.get("id")
    filename = './img/{}.png'.format(id_)

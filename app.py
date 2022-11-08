@@ -120,8 +120,6 @@ def mint():
    
    print('{}_{}'.format(Breed,Gender))
    layers_data = createLayerConfig('{}_{}'.format(Breed,Gender))
-   print(layers_data)
-   return layers_data
    layers =  ['Background','Soul Ring','Colors','Belly','Pattern','Soul Particle','Soul Beam']
    while True:
       # try:
@@ -198,4 +196,3 @@ if __name__ == '__main__':
    
 
    app.run(host='192.248.172.104', port=8080)
-   

@@ -24,13 +24,14 @@ def createLayerConfig(folder_name ):
       layer_data.append([temp[2], file, (str(temp[-1]).split('#')[-1][:-4])])
 
    final_file = {}
+   print(layer_data)
    for layer in layers:
       files = []
       weight = []
       for data in layer_data:
          if layer in data:
                files.append(data[1])
-               weight.append(int(data[2]))
+               weight.append(int(str((data[2])).split(' ')[0]))
 
       final_file[layer] = [files, weight]
    return final_file
@@ -116,10 +117,12 @@ def mint():
    global img,allUniqueHash,all_metadata
    Breed = request.args.get("breed")
    Gender = request.args.get("gender")
-   print(Breed,Gender)
+   
+   print('{}_{}'.format(Breed,Gender))
    layers_data = createLayerConfig('{}_{}'.format(Breed,Gender))
-   # print( layers_data)
-   layers =  ['Background','Soul Ring','Color','Belly','Pattern','Soul Particle','Soul Beam']
+   print(layers_data)
+   return layers_data
+   layers =  ['Background','Soul Ring','Colors','Belly','Pattern','Soul Particle','Soul Beam']
    while True:
       # try:
          print('Number Of Image: ', img)
@@ -166,7 +169,7 @@ if __name__ == '__main__':
    all_stats = {}
    all_data = []
    allUniqueHash = []
-   layers= ['Background','Soul Ring','Color','Belly','Pattern','Eyes','Soul Particle','Soul Beam']
+   layers= ['Background','Soul Ring','Colors','Belly','Pattern','Eyes','Soul Particle','Soul Beam']
    contractStat = ['Health','Agility','strength','weight','Stamina','Power','Endurance','Luck','Toughness','Swiftness']
    values ={'falon':['22-26','12-14','14-18','6-22'],
             'belphegor':['21-25','11-13','13-17','7-22'],
@@ -194,4 +197,5 @@ if __name__ == '__main__':
    
    
 
-   app.run(host='192.248.172.104', port=8080)
+   app.run(host='192.248.172.104', port=80)
+   

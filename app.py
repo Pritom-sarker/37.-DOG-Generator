@@ -120,7 +120,7 @@ def mint():
    
    print('{}_{}'.format(Breed,Gender))
    layers_data = createLayerConfig('{}_{}'.format(Breed,Gender))
-   layers =  ['Background','Soul Ring','Colors','Belly','Pattern','Soul Particle','Soul Beam']
+   layers =  ['Soul Ring','Colors','Belly','Pattern','Soul Particle','Soul Beam']
    while True:
       # try:
          print('Number Of Image: ', img)
@@ -167,7 +167,7 @@ if __name__ == '__main__':
    all_stats = {}
    all_data = []
    allUniqueHash = []
-   layers= ['Background','Soul Ring','Colors','Belly','Pattern','Eyes','Soul Particle','Soul Beam']
+   layers= ['Soul Ring','Colors','Belly','Pattern','Eyes','Soul Particle','Soul Beam']
    contractStat = ['Health','Agility','strength','weight','Stamina','Power','Endurance','Luck','Toughness','Swiftness']
    values ={'falon':['22-26','12-14','14-18','6-22'],
             'belphegor':['21-25','11-13','13-17','7-22'],
